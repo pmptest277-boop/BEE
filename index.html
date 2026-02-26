@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bee Shooter</title>
+    <script type="module" src="/src/main.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <h1>Bee Shooter</h1>
+      <section class="hud">
+        <span>Score: <strong id="score">0</strong></span>
+        <span>Lives: <strong id="lives">3</strong></span>
+      </section>
+      <canvas id="gameCanvas" width="640" height="480" aria-label="Bee Shooter game area"></canvas>
+      <p id="message" class="message">Use ← / → to move, Space to shoot.</p>
+      <button id="restartButton" type="button" hidden>Restart</button>
+    </main>
+  </body>
+</html>
