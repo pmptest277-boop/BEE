@@ -11,6 +11,8 @@ export function startGame({ canvas, scoreEl, livesEl, messageEl, restartButton }
   const ctx = canvas.getContext('2d');
   let state = createInitialState();
   const keys = { left: false, right: false };
+  let animationFrameId = null;
+  let isRunning = true;
 
   function resetGame() {
     state = createInitialState();
@@ -166,9 +168,13 @@ export function startGame({ canvas, scoreEl, livesEl, messageEl, restartButton }
   }
 
   function loop() {
+    if (!isRunning) {
+      return;
+    }
+
     update();
     render();
-    requestAnimationFrame(loop);
+    animationFrameId = requestAnimationFrame(loop);
   }
 
   window.addEventListener('keydown', onKeyDown);
@@ -180,6 +186,10 @@ export function startGame({ canvas, scoreEl, livesEl, messageEl, restartButton }
 
   return {
     stop() {
+      isRunning = false;
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+      }
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('keyup', onKeyUp);
       restartButton.removeEventListener('click', resetGame);
