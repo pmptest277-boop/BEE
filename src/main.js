@@ -1,4 +1,3 @@
-import './style.css';
 import { startGame } from './game.js';
 
 const canvas = document.querySelector('#gameCanvas');
